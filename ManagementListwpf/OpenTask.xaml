@@ -1,0 +1,74 @@
+﻿<Window x:Class="ManagementListwpf.OpenTask"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ManagementListwpf"
+        mc:Ignorable="d"
+        Title="OpenTask" Height="300" Width="400" WindowStyle="None" Background="Transparent" AllowsTransparency="True" MouseDown="Window_MouseDown" WindowStartupLocation="CenterScreen">
+    <Border x:Name="WindowBackground" Background="#FFE8E8E8" CornerRadius="15">
+        <Grid> 
+            <Grid VerticalAlignment="Stretch" HorizontalAlignment="Center" Width="380" Margin="0,10,0,10" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="9*"/>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition Height="9*"/>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition Height="25*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition x:Name="forDelete" Height="10*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Row="0" Grid.Column="0" Background="Red" BorderThickness="3" BorderBrush="Red" CornerRadius="8" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                    <Grid>
+                        <Label x:Name="TaskStatus" Content="Status zadania" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontWeight="Bold"  FontStretch="Normal" FontStyle="Italic" Foreground="White"/>
+                        <Button x:Name="Cancel" Grid.Row="0" Grid.Column="1" Margin="0,0,10,0" Height="30" Width="30" HorizontalAlignment="Right" Click="Exit_Click" Cursor="Hand">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Padding" Value="5"/>
+                                    <Setter Property="Background" Value="Red"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border Name="border" BorderThickness="0" CornerRadius="4" BorderBrush="Black" Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FFAA0000"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/assets/xcloseblack.png" Visibility="Visible" Stretch="Fill" Cursor="Hand" StretchDirection="UpOnly"></Image>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </Border>
+                <Label x:Name="TitleTask" Content="Tytuł zadania" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Stretch" FontSize="14" FontWeight="Bold"/>
+                <Border x:Name="TitleTextBorder" Background="#FFFFFFFF" Grid.Row="2" Grid.Column="0" CornerRadius="8">
+                    <TextBlock x:Name="TitleText" Padding="2" Background="Transparent" HorizontalAlignment="Stretch" Text="" TextWrapping="Wrap" VerticalAlignment="Stretch"/>
+                </Border>
+                <Label x:Name="DescriptionTask" Content="Opis zadania" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Stretch" FontSize="14" FontWeight="Bold"/>
+                <Border x:Name="DescriptionTextBorder" Background="#FFFFFFFF" Grid.Row="4" Grid.Column="0" CornerRadius="8">
+                    <TextBlock x:Name="DescriptionText" Padding="2" Background="Transparent" HorizontalAlignment="Stretch" Text="" TextWrapping="Wrap" VerticalAlignment="Stretch"/>
+                </Border>
+                <Border x:Name="LinkButtonBorder" Background="Red"  Grid.Row="6" Grid.Column="0" CornerRadius="8" Margin="0,2,0,2">
+                    <Button x:Name="LinkButton" Background="Transparent" Foreground="White" BorderThickness="0" Content="Link" FontSize="16" FontWeight="Bold" Cursor="Hand" MouseEnter="LinkButton_MouseEnter" MouseLeave="LinkButton_MouseLeave" Click="LinkButton_Click"/>
+                </Border>
+            </Grid>
+            <TextBlock HorizontalAlignment="Left" Margin="536,190,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        </Grid>
+    </Border>
+</Window>

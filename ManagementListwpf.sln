@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31321.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagementListwpf", "ManagementListwpf\ManagementListwpf.csproj", "{DA38A970-8A7B-4C6B-BC27-E63E77ACD594}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA38A970-8A7B-4C6B-BC27-E63E77ACD594}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA38A970-8A7B-4C6B-BC27-E63E77ACD594}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA38A970-8A7B-4C6B-BC27-E63E77ACD594}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA38A970-8A7B-4C6B-BC27-E63E77ACD594}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {04A9D69D-C51B-49E9-BCFE-5EFFD57E7B3E}
+	EndGlobalSection
+EndGlobal

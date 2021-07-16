@@ -1,0 +1,50 @@
+﻿<Window x:Class="ManagementListwpf.AddTask"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ManagementListwpf"
+        mc:Ignorable="d"
+        Title="AddTask" Height="400" Width="400" WindowStyle="None" Background="Transparent" AllowsTransparency="True" WindowStartupLocation="CenterScreen">
+    <Border x:Name="WindowBackground" Background="#FFf2f3f5" CornerRadius="15">
+        <Grid>
+            <Grid VerticalAlignment="Stretch" HorizontalAlignment="Center" Width="360" Margin="0,10,0,10" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition Height="9*"/>
+                    <RowDefinition Height="6*"/>
+                    <RowDefinition Height="8*"/>
+                    <RowDefinition Height="35*"/>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition Height="9*"/>
+                    <RowDefinition Height="11*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Tytuł zadania" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Stretch" FontSize="14" FontWeight="Bold"/>
+                <Border x:Name="TitleTextBorder" Background="#FFFFFFFF" Grid.Row="1" Grid.Column="0" CornerRadius="8">
+                    <TextBox x:Name="TitleText" Padding="2" Background="Transparent" BorderThickness="0" HorizontalAlignment="Stretch" Text="" TextWrapping="Wrap" VerticalAlignment="Stretch" MaxLines="2" MaxLength="50"/>
+                </Border>
+                <CheckBox x:Name="CheckBox" Grid.Row="2" Content="Ważne zadanie" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                <Label Content="Opis zadania" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Stretch" FontSize="14" FontWeight="Bold"/>
+                <Border x:Name="DescriptionTextBorder" Background="#FFFFFFFF" Grid.Row="4" Grid.Column="0" CornerRadius="8">
+                    <TextBox x:Name="DescriptionText" Padding="2" Background="Transparent" BorderThickness="0" HorizontalAlignment="Stretch" Text="" TextWrapping="Wrap" VerticalAlignment="Stretch" MaxLength="300" IsUndoEnabled="False" MaxLines="12"/>
+                </Border>
+                <Label Content="Link do filmu lub strony internetowej" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Stretch" FontSize="14" FontWeight="Bold"/>
+                <Border x:Name="LinkTextBorder" Background="#FFFFFFFF" Grid.Row="6" Grid.Column="0" CornerRadius="8">
+                    <TextBox x:Name="LinkText" Padding="2" Background="Transparent" BorderThickness="0" HorizontalAlignment="Stretch" Text="" TextWrapping="Wrap" VerticalAlignment="Stretch" MaxLength="100" MaxLines="3"/>
+                </Border>
+                <StackPanel Grid.Row="7" Orientation="Horizontal" VerticalAlignment="Bottom" Height="40" HorizontalAlignment="Center">
+                    <Border x:Name="CreateBorder" Background="Red" CornerRadius="8" Margin="0,0,10,0">
+                        <Button x:Name="Create" Foreground="White" Width="150" BorderThickness="0" Content="Utwórz" Click="Create_Click" FontSize="16" FontWeight="Bold" MouseEnter="Create_MouseEnter" MouseLeave="Create_MouseLeave"/>
+                    </Border>
+                    <Border x:Name="CancelBorder" Background="Red" CornerRadius="8" Margin="10,0,0,0">
+                        <Button x:Name="Cancel" Background="Transparent" Foreground="White" Width="150" BorderThickness="0" Content="Anuluj" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Cancel_Click" FontSize="16" FontWeight="Bold" MouseEnter="Cancel_MouseEnter" MouseLeave="Cancel_MouseLeave">
+                        </Button>
+                    </Border>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

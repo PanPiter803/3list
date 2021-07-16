@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="tasksload.png" />
+    <None Remove="taskssave.png" />
+    <None Remove="taskdo.png" />
+    <None Remove="taskrem.png" />
+    <None Remove="taskedit.png" />
+    <None Remove="taskdo.png" />
+    <None Remove="taskedit.png" />
+    <None Remove="taskrem.png" />
+    <None Remove="maximizeicon.png" />
+    <None Remove="minimizeicon.png" />
+    <None Remove="xcloseblack.png" />
+    <None Remove="xclose.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="assets\maximizeicon.png" />
+    <Resource Include="assets\minimizeicon.png" />
+    <Resource Include="assets\taskdo.png" />
+    <Resource Include="assets\taskedit.png" />
+    <Resource Include="assets\taskrem.png" />
+    <Resource Include="assets\tasksload.png" />
+    <Resource Include="assets\taskssave.png" />
+    <Resource Include="assets\xclose.png" />
+    <Resource Include="assets\xcloseblack.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="OpenTask.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="OpenTask.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
+</Project>
