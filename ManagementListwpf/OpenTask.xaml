@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:ManagementListwpf"
         mc:Ignorable="d"
         Title="OpenTask" Height="300" Width="400" WindowStyle="None" Background="Transparent" AllowsTransparency="True" MouseDown="Window_MouseDown" WindowStartupLocation="CenterScreen">
-    <Border x:Name="WindowBackground" Background="#FFE8E8E8" CornerRadius="15">
-        <Grid> 
+    <Border x:Name="WindowBackground" Background="#FFD4D4D4" CornerRadius="15">
+        <Grid>
             <Grid VerticalAlignment="Stretch" HorizontalAlignment="Center" Width="380" Margin="0,10,0,10" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="9*"/>
@@ -23,52 +23,44 @@
                 </Grid.ColumnDefinitions>
                 <Border Grid.Row="0" Grid.Column="0" Background="Red" BorderThickness="3" BorderBrush="Red" CornerRadius="8" HorizontalAlignment="Stretch" VerticalAlignment="Center">
                     <Grid>
-                        <Label x:Name="TaskStatus" Content="Status zadania" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontWeight="Bold"  FontStretch="Normal" FontStyle="Italic" Foreground="White"/>
-                        <Button x:Name="Cancel" Grid.Row="0" Grid.Column="1" Margin="0,0,10,0" Height="30" Width="30" HorizontalAlignment="Right" Click="Exit_Click" Cursor="Hand">
-                            <Button.Style>
-                                <Style TargetType="Button">
-                                    <Setter Property="Padding" Value="5"/>
-                                    <Setter Property="Background" Value="Red"/>
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="Button">
-                                                <Border Name="border" BorderThickness="0" CornerRadius="4" BorderBrush="Black" Background="{TemplateBinding Background}">
-                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                                </Border>
-                                                <ControlTemplate.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-
-                                                    </Trigger>
-                                                </ControlTemplate.Triggers>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#FFAA0000"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Style>
+                        <Label x:Name="TaskStatus" Content="Status zadania" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontWeight="Bold"  FontStretch="Normal" FontStyle="Italic" Foreground="White"/>
+                        <Button Style="{StaticResource ChangeColorOpenTask}" x:Name="Layout" Content="..." Background="Transparent" Height="30" Width="30" HorizontalAlignment="Right" Margin="0,0,45,0" Click="Layout_Click" FontSize="26" Foreground="White" FontWeight="DemiBold" Cursor="Hand" FontStretch="Normal"/>
+                        <Button Style="{StaticResource CloseOpenTask}" x:Name="Cancel" Margin="0,0,10,0" Height="30" Width="30" HorizontalAlignment="Right" Click="Exit_Click" Cursor="Hand">
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="/assets/xcloseblack.png" Visibility="Visible" Stretch="Fill" Cursor="Hand" StretchDirection="UpOnly"></Image>
+                                <Image Source="/assets/xcloseblack.png" Visibility="Visible" Stretch="Fill" Cursor="Hand" StretchDirection="UpOnly"/>
                             </StackPanel>
                         </Button>
                     </Grid>
                 </Border>
                 <Label x:Name="TitleTask" Content="Tytuł zadania" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Stretch" FontSize="14" FontWeight="Bold"/>
                 <Border x:Name="TitleTextBorder" Background="#FFFFFFFF" Grid.Row="2" Grid.Column="0" CornerRadius="8">
-                    <TextBlock x:Name="TitleText" Padding="2" Background="Transparent" HorizontalAlignment="Stretch" Text="" TextWrapping="Wrap" VerticalAlignment="Stretch"/>
+                    <TextBlock x:Name="TitleText" Padding="5" Background="Transparent" HorizontalAlignment="Stretch" Text="" TextWrapping="Wrap" VerticalAlignment="Stretch" FontWeight="SemiBold"/>
                 </Border>
                 <Label x:Name="DescriptionTask" Content="Opis zadania" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Stretch" FontSize="14" FontWeight="Bold"/>
                 <Border x:Name="DescriptionTextBorder" Background="#FFFFFFFF" Grid.Row="4" Grid.Column="0" CornerRadius="8">
-                    <TextBlock x:Name="DescriptionText" Padding="2" Background="Transparent" HorizontalAlignment="Stretch" Text="" TextWrapping="Wrap" VerticalAlignment="Stretch"/>
+                    <TextBlock x:Name="DescriptionText" Padding="5" Background="Transparent" HorizontalAlignment="Stretch" Text="" TextWrapping="Wrap" VerticalAlignment="Stretch" FontWeight="SemiBold"/>
                 </Border>
                 <Border x:Name="LinkButtonBorder" Background="Red"  Grid.Row="6" Grid.Column="0" CornerRadius="8" Margin="0,2,0,2">
                     <Button x:Name="LinkButton" Background="Transparent" Foreground="White" BorderThickness="0" Content="Link" FontSize="16" FontWeight="Bold" Cursor="Hand" MouseEnter="LinkButton_MouseEnter" MouseLeave="LinkButton_MouseLeave" Click="LinkButton_Click"/>
                 </Border>
             </Grid>
-            <TextBlock HorizontalAlignment="Left" Margin="536,190,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <Border x:Name="ColorChange" Visibility="Hidden" Background="#FFB0AFAF" Height="70" CornerRadius="15,15,0,0" VerticalAlignment="Top">
+                <Grid Background="Transparent">
+                    <Label x:Name="TitleOfTask" Content="Wybierz motyw dla swojej notatki" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
+                    <DockPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10">
+                        <Button Style="{StaticResource ColorsOpenTask}"  Background="White" Width="32" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center" Click="LayoutColorWhite_Click" Cursor="Hand"/>
+                        <Button Style="{StaticResource ColorsOpenTask}" Background="Black" Width="32" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center" Click="LayoutColorBlack_Click" Cursor="Hand"/>
+                        <Button Style="{StaticResource ColorsOpenTask}" Background="Yellow" Width="32" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center" Click="LayoutColorYellow_Click" Cursor="Hand"/>
+                        <Button Style="{StaticResource ColorsOpenTask}" Background="Blue" Width="32" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center" Click="LayoutColorBlue_Click" Cursor="Hand"/>
+                        <Button Style="{StaticResource ColorsOpenTask}" Background="Brown" Width="32" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center" Click="LayoutColorBrown_Click" Cursor="Hand"/>
+                        <Button Style="{StaticResource ColorsOpenTask}" Background="Pink" Width="32" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center" Click="LayoutColorPink_Click" Cursor="Hand"/>
+                        <Button Style="{StaticResource ColorsOpenTask}" Background="Purple" Width="32" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center" Click="LayoutColorPurple_Click" Cursor="Hand"/>
+                        <Button Style="{StaticResource ColorsOpenTask}" Background="Orange" Width="32" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center" Click="LayoutColorOrange_Click" Cursor="Hand"/>
+                        <Button Style="{StaticResource ColorsOpenTask}" Background="LightGreen" Width="32" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center" Click="LayoutColorLightGreen_Click" Cursor="Hand"/>
+                        <Button Style="{StaticResource ColorsOpenTask}" Background="Green" Width="32" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center" Click="LayoutColorGreen_Click" Cursor="Hand"/>
+                    </DockPanel>
+                </Grid>
+            </Border>
         </Grid>
     </Border>
 </Window>

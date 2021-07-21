@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ManagementListwpf"
         mc:Ignorable="d"
         Title="AddTask" Height="400" Width="400" WindowStyle="None" Background="Transparent" AllowsTransparency="True" WindowStartupLocation="CenterScreen">
-    <Border x:Name="WindowBackground" Background="#FFf2f3f5" CornerRadius="15">
+    <Border x:Name="WindowBackground" Background="#FFD4D4D4" CornerRadius="15">
         <Grid>
             <Grid VerticalAlignment="Stretch" HorizontalAlignment="Center" Width="360" Margin="0,10,0,10" >
                 <Grid.RowDefinitions>
@@ -22,16 +22,16 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Label Content="Tytuł zadania" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Stretch" FontSize="14" FontWeight="Bold"/>
+                <Label x:Name="TitleTitle" Content="Tytuł zadania" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Stretch" FontSize="14" FontWeight="Bold"/>
                 <Border x:Name="TitleTextBorder" Background="#FFFFFFFF" Grid.Row="1" Grid.Column="0" CornerRadius="8">
                     <TextBox x:Name="TitleText" Padding="2" Background="Transparent" BorderThickness="0" HorizontalAlignment="Stretch" Text="" TextWrapping="Wrap" VerticalAlignment="Stretch" MaxLines="2" MaxLength="50"/>
                 </Border>
                 <CheckBox x:Name="CheckBox" Grid.Row="2" Content="Ważne zadanie" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
-                <Label Content="Opis zadania" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Stretch" FontSize="14" FontWeight="Bold"/>
+                <Label x:Name="DescriptionTitle" Content="Opis zadania" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Stretch" FontSize="14" FontWeight="Bold"/>
                 <Border x:Name="DescriptionTextBorder" Background="#FFFFFFFF" Grid.Row="4" Grid.Column="0" CornerRadius="8">
                     <TextBox x:Name="DescriptionText" Padding="2" Background="Transparent" BorderThickness="0" HorizontalAlignment="Stretch" Text="" TextWrapping="Wrap" VerticalAlignment="Stretch" MaxLength="300" IsUndoEnabled="False" MaxLines="12"/>
                 </Border>
-                <Label Content="Link do filmu lub strony internetowej" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Stretch" FontSize="14" FontWeight="Bold"/>
+                <Label x:Name="LinkTitle" Content="Link do filmu lub strony internetowej" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Stretch" FontSize="14" FontWeight="Bold"/>
                 <Border x:Name="LinkTextBorder" Background="#FFFFFFFF" Grid.Row="6" Grid.Column="0" CornerRadius="8">
                     <TextBox x:Name="LinkText" Padding="2" Background="Transparent" BorderThickness="0" HorizontalAlignment="Stretch" Text="" TextWrapping="Wrap" VerticalAlignment="Stretch" MaxLength="100" MaxLines="3"/>
                 </Border>

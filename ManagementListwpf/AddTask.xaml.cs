@@ -58,17 +58,21 @@ namespace ManagementListwpf
             {
                 WindowBackground.Background = (Brush)brush.ConvertFrom("#FF212226");
                 TitleTextBorder.Background = (Brush)brush.ConvertFrom("#FF303136");
+                TitleTitle.Foreground = Brushes.White;
                 TitleText.Foreground = Brushes.White;
+                CheckBox.Foreground = Brushes.White;
                 DescriptionTextBorder.Background = (Brush)brush.ConvertFrom("#FF303136");
+                DescriptionTitle.Foreground = Brushes.White;
                 DescriptionText.Foreground = Brushes.White;
                 LinkTextBorder.Background = (Brush)brush.ConvertFrom("#FF303136");
+                LinkTitle.Foreground = Brushes.White;
                 LinkText.Foreground = Brushes.White;
             }
         }
 
         private void Create_Click(object sender, RoutedEventArgs e)
         {
-            if (!editing) ((MainWindow)Application.Current.MainWindow).CreateTask(Titlee(), Description(), Link(), Important());
+            if (!editing) ((MainWindow)Application.Current.MainWindow).CreateTask(Titlee(), Description(), Link(), Important(), 0);
             else ((MainWindow)Application.Current.MainWindow).Edit(Item, TaskID, Titlee(), Description(), Link());
             this.Close();
         }

@@ -93,7 +93,7 @@
                     </StackPanel>
                 </Button>
             </Grid>
-            <Border x:Name="ListsBorder" Margin="160,63,0,0" CornerRadius="20,0,0,0" Background="#FFf2f3f5">
+            <Border x:Name="ListsBorder" Margin="160,63,0,0" CornerRadius="20,0,0,0" Background="#FFEEEEEE">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="10*"/>

@@ -14,7 +14,7 @@ namespace ManagementListwpf
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly List<Tasks> taskslist = new();
+        public readonly List<Tasks> taskslist = new();
         private ListBoxItem Item = null;
 
         private readonly List<OpenTask> openedTasks = new();
@@ -26,6 +26,7 @@ namespace ManagementListwpf
         {
             InitializeComponent();
             ButtonStateCheck();
+            Load(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\3list\Tasks.txt");
         }
 
         private void ButtonStateCheck()
@@ -69,6 +70,7 @@ namespace ManagementListwpf
             this.WindowState = WindowState.Minimized;
         }
 
+        //Menu Buttons
         private void AddTask_Click(object sender, RoutedEventArgs e)
         {
             AddTask task = new();
@@ -123,7 +125,14 @@ namespace ManagementListwpf
         private void SaveFile_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult dialog = MessageBox.Show("Opcja 'Zapisz zadania' zastąpi poprzedno zapisane zadania obecnymi. Kontynuować?", "Ostrzeżenie", MessageBoxButton.OKCancel);
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Tasks.txt";
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\3list";
+
+            if (Directory.Exists(path)) path += @"\Tasks.txt";
+            else
+            {
+                Directory.CreateDirectory(path);
+                path += @"\Tasks.txt";
+            }
 
             if (File.Exists(path))
             {
@@ -132,6 +141,25 @@ namespace ManagementListwpf
             else Save(path);
         }
 
+        private void LoadFile_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult dialog = MessageBox.Show("Opcja 'Wczytaj zadania' wczyta wszystkie zapisane zadania i zastąpi obecne. Kontynuować?", "Ostrzeżenie", MessageBoxButton.OKCancel);
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\3list\Tasks.txt";
+
+            if(!File.Exists(path))
+            {
+                MessageBox.Show("Nie znaleziono zapisanych zadań.", "Błąd");
+            }
+            else
+            {
+                if (dialog == MessageBoxResult.OK)
+                {
+                    Load(path);
+                }
+            }
+        }
+
+        //Save function
         private void Save(string path)
         {
             try
@@ -139,7 +167,7 @@ namespace ManagementListwpf
                 using StreamWriter save = new(path);
 
                 foreach (Tasks tasks in taskslist)
-                    save.WriteLine(tasks.TitleOfTask + ";" + tasks.DescriptionOfTask + ";" + tasks.LinkOfTask + ";" + tasks.ListNameOfTask);
+                    save.WriteLine(tasks.TitleOfTask + ";" + tasks.DescriptionOfTask + ";" + tasks.LinkOfTask + ";" + tasks.ListNameOfTask + ";" + tasks.LayoutColor);
             }
             catch (Exception exp)
             {
@@ -147,16 +175,14 @@ namespace ManagementListwpf
             }
         }
 
-        private void LoadFile_Click(object sender, RoutedEventArgs e)
+        private void Load(string path)
         {
-            MessageBoxResult dialog = MessageBox.Show("Opcja 'Wczytaj zadania' wczyta wszystkie zapisane zadania i zastąpi obecne. Kontynuować?", "Ostrzeżenie", MessageBoxButton.OKCancel);
-            if (dialog == MessageBoxResult.OK)
-            {
-                CurrentList.Items.Clear();
-                ImportantList.Items.Clear();
-                FinishedList.Items.Clear();
-                string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Tasks.txt";
+            CurrentList.Items.Clear();
+            ImportantList.Items.Clear();
+            FinishedList.Items.Clear();    
 
+            if (File.Exists(path))
+            {
                 try
                 {
                     using StreamReader reader = new(path);
@@ -166,7 +192,7 @@ namespace ManagementListwpf
                     while ((line = reader.ReadLine()) != null)
                     {
                         linesplit = line.Split(';').ToList();
-                        CreateTask(linesplit[0], linesplit[1], linesplit[2], Int32.Parse(linesplit[3]));
+                        CreateTask(linesplit[0], linesplit[1], linesplit[2], Int32.Parse(linesplit[3]), Int32.Parse(linesplit[4]));
                     }
                 }
                 catch (Exception exp)
@@ -176,17 +202,8 @@ namespace ManagementListwpf
             }
         }
 
-        public void Edit(ListBoxItem editingtask, int ID, string title, string description, string link)
-        {
-            var item = taskslist.Find(item => item.TaskID == ID);
-            editingtask.Content = title;
-
-            taskslist[ID].TitleOfTask = title;
-            taskslist[ID].DescriptionOfTask = description;
-            taskslist[ID].LinkOfTask = link;
-        }
-
-        public void CreateTask(string title, string description, string link, int list)
+        //Create, Edit
+        public void CreateTask(string title, string description, string link, int list, int layout)
         {
             ListBoxItem creatingtask = new();
             creatingtask.Content = title;
@@ -196,6 +213,7 @@ namespace ManagementListwpf
             taskslist[^1].TitleOfTask = title;
             taskslist[^1].DescriptionOfTask = description;
             taskslist[^1].LinkOfTask = link;
+            taskslist[^1].LayoutColor = layout;
             switch (list)
             {
                 case 0:
@@ -215,20 +233,32 @@ namespace ManagementListwpf
             }
         }
 
+        public void Edit(ListBoxItem editingtask, int ID, string title, string description, string link)
+        {
+            var item = taskslist.Find(item => item.TaskID == ID);
+            editingtask.Content = title;
+
+            item.TitleOfTask = title;
+            item.DescriptionOfTask = description;
+            item.LinkOfTask = link;
+        }
+
         private void OpenTask(ListBoxItem selectedItem)
         {
-            try
+            if(selectedItem != null)
             {
-                var item = taskslist.Find(item => item.TitleOfTask == selectedItem.Content.ToString());
-                openedTasks.Add(new OpenTask(item.TitleOfTask, item.DescriptionOfTask, item.LinkOfTask, item.ListNameOfTask));
-                openedTasks[^1].Show();
+                try
+                {
+                    var item = taskslist.Find(item => item.TitleOfTask == selectedItem.Content.ToString());
+                    openedTasks.Add(new OpenTask(item.TaskID, item.TitleOfTask, item.DescriptionOfTask, item.LinkOfTask, item.ListNameOfTask, item.LayoutColor));
+                    openedTasks[^1].Show();
+                }
+                catch (Exception exp)
+                {
+                    MessageBox.Show(exp.ToString());
+                }
             }
-            catch (Exception exp)
-            {
-                MessageBox.Show(exp.ToString());
-            }
-
-        }
+        } 
 
         //ListBoxes logic
 
@@ -464,7 +494,7 @@ namespace ManagementListwpf
             {
                 ChangeLayoutBorder.Background = Brushes.White;
                 WindowBorder.Background = (Brush)brush.ConvertFrom("#FFD4D4D4");
-                ListsBorder.Background = (Brush)brush.ConvertFrom("#FFf2f3f5");
+                ListsBorder.Background = (Brush)brush.ConvertFrom("#FFEEEEEE");
 
                 CurrentTaskTitle.Foreground = Brushes.Black;
                 ImportantTaskTitle.Foreground = Brushes.Black;
@@ -487,7 +517,7 @@ namespace ManagementListwpf
 
                 foreach (OpenTask o in openedTasks)
                 {
-                    o.WindowBackground.Background = (Brush)brush.ConvertFrom("#FFf2f3f5");
+                    o.WindowBackground.Background = (Brush)brush.ConvertFrom("#FFEEEEEE");
 
                     o.TitleTextBorder.Background = (Brush)brush.ConvertFrom("#FFFFFFFF");
                     o.TitleText.Foreground = Brushes.Black;
@@ -610,5 +640,6 @@ namespace ManagementListwpf
         public string DescriptionOfTask { get; set; }
         public string LinkOfTask { get; set; }
         public int ListNameOfTask { get; set; }
+        public int LayoutColor { get; set; }
     }
 }

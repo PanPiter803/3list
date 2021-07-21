@@ -7,6 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="changecolor.png" />
+    <None Remove="selectedblack.png" />
+    <None Remove="selectedwhite.png" />
     <None Remove="tasksload.png" />
     <None Remove="taskssave.png" />
     <None Remove="taskdo.png" />
@@ -24,6 +27,8 @@
   <ItemGroup>
     <Resource Include="assets\maximizeicon.png" />
     <Resource Include="assets\minimizeicon.png" />
+    <Resource Include="assets\selectedblack.png" />
+    <Resource Include="assets\selectedwhite.png" />
     <Resource Include="assets\taskdo.png" />
     <Resource Include="assets\taskedit.png" />
     <Resource Include="assets\taskrem.png" />
